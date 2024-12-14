@@ -2,9 +2,10 @@ import streamlit as st
 import cv2
 import numpy as np
 import tensorflow as tf
-from tensorflow.keras.models import load_model
+import keras
 
-model = load_model('trained_model.h5')
+
+model = keras.saving.load_model('trained_model.h5')
 
 def process_image(image):
     img = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) #Convert the image to grayscale
