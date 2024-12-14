@@ -7,14 +7,13 @@ import keras
 # Modeli yükle
 model = keras.models.load_model('trained_model.h5')
 
-# Farklı formatlardaki görüntüleri işleyecek fonksiyon
 def process_image(image, target_size=(150, 150), expected_channels=3):
     if len(image.shape) == 2:  # Grayscale
         if expected_channels == 3:
             image = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
-    elif len(image.shape) == 3:
+    elif len(image.shape) == 3: # RGB
         if image.shape[2] != expected_channels:
-            if expected_channels == 1:
+            if expected_channels == 1: # Convert to grayscale
                 image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
 
     image = cv2.resize(image, target_size)
